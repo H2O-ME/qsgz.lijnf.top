@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>治愈花园 - IFREAD's Web</title>
+    <link rel="icon" type="image/png" href="./images/favicon.png.png">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/welcome-animation.css">
+    <link rel="stylesheet" href="./styles/healing-garden.css">
+    <link rel="stylesheet" href="./styles/nextchat-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- 入场动画遮罩层 -->
+    <div id="welcomeOverlay" class="welcome-overlay">
+        <div class="welcome-content">
+            <h1 class="welcome-text">放松一下吧</h1>
+            <div class="welcome-loader">
+                <div class="loader-dot"></div>
+                <div class="loader-dot"></div>
+                <div class="loader-dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <nav class="main-nav">
+            <div class="logo">
+                <a href="index.html"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="healing-garden.html" class="active">治愈花园</a></li>
+                <li><a href="efficiency.html">效率</a></li>
+                <li><a href="#">教育大模型</a></li>
+
+                <li><a href="developer.html">开发者</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="healing-main">
+        <!-- 页面标题区域 -->
+        <section class="healing-hero">
+            <div class="hero-content">
+                <h1 class="healing-title">🌸 治愈花园 🌸</h1>
+                <p class="healing-subtitle">在这里放松心情，享受宁静时光</p>
+            </div>
+        </section>
+
+
+
+        <!-- 功能区域容器 -->
+        <div class="healing-container">
+            <!-- 沉浸式减压故事 -->
+            <section class="healing-stories-section">
+                <h2>沉浸式减压故事</h2>
+                <p class="section-description">踏上治愈之旅，在美丽的故事中找到内心的平静</p>
+                <!-- 故事内容将由 healing-stories.js 动态生成 -->
+            </section>
+
+            <!-- 解压小游戏区域 -->
+            <section class="games-section">
+                <h2 class="section-title">🎮 解压小游戏</h2>
+                <div class="games-grid">
+                    <!-- 泡泡减压乐 -->
+                    <div class="game-card">
+                        <h3>泡泡减压乐</h3>
+                        <div class="bubble-game" id="bubbleGame">
+                            <canvas id="bubbleCanvas" width="300" height="200"></canvas>
+                            <div class="game-score">分数: <span id="bubbleScore">0</span></div>
+                        </div>
+                        <button id="startBubbleGame" class="game-btn">开始游戏</button>
+                    </div>
+
+                    <!-- 治愈涂鸦板 -->
+                    <div class="game-card">
+                        <h3>治愈涂鸦板</h3>
+                        <div class="drawing-tools">
+                            <div class="color-palette">
+                                <div class="color-option" data-color="#87CEEB" style="background: #87CEEB;"></div>
+                                <div class="color-option" data-color="#FFB6C1" style="background: #FFB6C1;"></div>
+                                <div class="color-option" data-color="#98FB98" style="background: #98FB98;"></div>
+                                <div class="color-option" data-color="#F0E68C" style="background: #F0E68C;"></div>
+                                <div class="color-option" data-color="#DDA0DD" style="background: #DDA0DD;"></div>
+                            </div>
+                            <div class="brush-controls">
+                                <label>笔刷大小:</label>
+                                <input type="range" id="brushSize" min="2" max="20" value="5">
+                                <button id="eraserBtn" class="tool-btn">橡皮擦</button>
+                                <button id="clearCanvas" class="tool-btn">清空</button>
+                            </div>
+                        </div>
+                        <canvas id="drawingCanvas" width="300" height="200"></canvas>
+                    </div>
+
+                    <!-- 迷你植物养成 -->
+                    <div class="game-card">
+                        <h3>迷你植物养成</h3>
+                        <div class="plant-game" id="plantGame">
+                            <div class="plant-container">
+                                <div class="plant-display" id="plantDisplay">
+                                    <img id="plantImage" src="" alt="植物" class="plant-img">
+                                </div>
+                                <div class="plant-info">
+                                    <p id="plantStage">选择一个种子开始种植</p>
+                                    <p id="waterCount">浇水次数: 0/5</p>
+                                </div>
+                            </div>
+                            <div class="plant-controls">
+                                <select id="plantSelect">
+                                    <option value="">选择植物</option>
+                                    <option value="succulent">多肉植物</option>
+                                    <option value="mushroom">小蘑菇</option>
+                                    <option value="flower">小花朵</option>
+                                </select>
+                                <button id="waterBtn" class="game-btn" disabled>💧 浇水</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 励志纸条墙 -->
+            <section class="notes-section">
+                <h2 class="section-title">📝 励志纸条墙</h2>
+                <div class="notes-controls">
+                    <button id="addNoteBtn" class="add-note-btn">✨ 添加正能量</button>
+                </div>
+                <div class="notes-wall" id="notesWall">
+                    <!-- 预设的励志纸条将在这里动态生成 -->
+                </div>
+            </section>
+
+            <!-- 晚霞落日图集 -->
+            <section class="gallery-section">
+                <h2 class="section-title">🌅 晚霞落日图集</h2>
+                <div class="image-gallery" id="imageGallery">
+                    <!-- 图片将在这里动态加载 -->
+                </div>
+            </section>
+
+            <!-- AI治愈对话 - NextChat风格 -->
+            <section class="ai-chat-section nextchat-style">
+                <h2 class="section-title">🌸 AI治愈助手</h2>
+                <div class="ai-chat-container nextchat-container">
+                    <div class="chat-header nextchat-header">
+                        <div class="ai-avatar nextchat-avatar">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                        <div class="ai-info">
+                        <h3>小花🌸</h3>
+                        <p class="ai-status">在线 - 你的治愈小助手</p>
+                    </div>
+                        <div class="chat-controls nextchat-controls">
+                            <button id="settingsBtn" class="control-btn" title="设置">
+                                <i class="fas fa-cog"></i>
+                            </button>
+                            <button id="clearChatBtn" class="control-btn" title="清空对话">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                            <button id="themeToggleBtn" class="control-btn" title="切换主题">
+                                <i class="fas fa-moon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chat-messages nextchat-messages" id="chatMessages">
+                        <div class="message ai-message nextchat-message">
+                            <div class="message-avatar nextchat-message-avatar">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                            <div class="message-content nextchat-message-content">
+                            <p>你好呀！我是小花🌸，你的治愈小助手。无论你遇到什么困扰，我都会用心陪伴你。今天过得怎么样呢？</p>
+                            <span class="message-time">刚刚</span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="chat-input-area nextchat-input-area">
+                        <div class="input-container nextchat-input-container">
+                            <textarea id="chatInput" class="nextchat-textarea" placeholder="发送消息给 NextChat..." maxlength="4000" rows="1"></textarea>
+                            <div class="nextchat-actions">
+                                <button id="uploadBtn" class="action-btn" title="上传文件">
+                                    <i class="fas fa-paperclip"></i>
+                                </button>
+                                <button id="sendMessageBtn" class="send-btn nextchat-send-btn" disabled>
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="nextchat-footer">
+                            <div class="model-selector">
+                                <span class="model-label">模型:</span>
+                                <select id="modelSelect" class="nextchat-select">
+                                    <option value="gpt-3.5">GPT-3.5</option>
+                                    <option value="gpt-4">GPT-4</option>
+                                    <option value="gemini-pro">Gemini Pro</option>
+                                </select>
+                            </div>
+                            <div class="api-status">
+                                <span id="apiStatus">API密钥未设置</span>
+                                <button id="setApiBtn" class="small-btn">设置</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 励志语录选择模态框 -->
+    <div id="quoteModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>选择一句励志语录</h3>
+            <div class="quote-options" id="quoteOptions">
+                <!-- 随机语录选项将在这里生成 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 图片查看模态框 -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content image-modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImage" src="" alt="">
+            <div class="image-nav">
+                <button id="prevImage" class="nav-btn">‹</button>
+                <button id="nextImage" class="nav-btn">›</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>关于我们</h4>
+                <ul>
+                    <li><a href="#">公司简介</a></li>
+                    <li><a href="#">新闻中心</a></li>
+                    <li><a href="#">工作机会</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>产品</h4>
+                <ul>
+                    <li><a href="#">最新产品</a></li>
+                    <li><a href="#">配件</a></li>
+                    <li><a href="#">软件服务</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>支持</h4>
+                <ul>
+                    <li><a href="#">帮助中心</a></li>
+                    <li><a href="#">联系我们</a></li>
+                    <li><a href="#">常见问题</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>关注我们</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-weixin"></i></a>
+                    <a href="#"><i class="fab fa-weibo"></i></a>
+                    <a href="#"><i class="fab fa-qq"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 IFREAD's Web. 保留所有权利。</p>
+        </div>
+    </footer>
+
+    <!-- 悬浮按钮 -->
+    <div class="floating-buttons">
+        <button id="darkModeToggle" class="floating-btn dark-mode-btn" title="切换暗色模式">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button id="musicPlayerToggle" class="floating-btn music-btn" title="音乐播放器">
+            <i class="fas fa-music"></i>
+        </button>
+    </div>
+
+    <!-- 音乐播放器容器 -->
+    <div id="musicPlayerContainer" class="music-player-container developer-music-player hidden">
+        <div class="music-player-header">
+            <div class="player-title">
+                <i class="fas fa-leaf"></i>
+                <span>治愈花园音乐台</span>
+            </div>
+            <div class="player-controls">
+                <button class="control-btn minimize-btn" title="最小化">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="control-btn close-btn" title="关闭">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="music-player-body">
+            <div class="player-info">
+                <div class="now-playing">
+                    <i class="fas fa-music"></i>
+                    <span>正在播放治愈音乐</span>
+                </div>
+            </div>
+            <div class="aplayer-container">
+                <meting-js 
+                    server="tencent" 
+                    type="playlist" 
+                    id="8642102409" 
+                    fixed="false" 
+                    autoplay="false" 
+                    theme="#4caf50" 
+                    loop="all" 
+                    order="random" 
+                    preload="auto" 
+                    volume="0.6"
+                    list-folded="false"
+                    list-max-height="200px">
+                </meting-js>
+            </div>
+            <div class="player-footer">
+                <div class="player-tips">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>聆听自然，治愈心灵</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入APlayer和MetingJS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/healing-garden.js"></script>
+    <script src="scripts/healing-stories.js"></script>
+</body>
+</html>

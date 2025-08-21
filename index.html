@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFREAD's Web</title>
+    <link rel="icon" type="image/png" href="./images/favicon.png.png">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/welcome-animation.css">
+    <link rel="stylesheet" href="./styles/hero-animation.css">
+    <link rel="stylesheet" href="./styles/image-transition.css">
+    <link rel="stylesheet" href="./styles/healing-invitation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- 入场动画遮罩层 -->
+    <div id="welcomeOverlay" class="welcome-overlay">
+        <div class="welcome-content">
+            <h1 class="welcome-text">终于等到你了</h1>
+            <div class="welcome-loader">
+                <div class="loader-dot"></div>
+                <div class="loader-dot"></div>
+                <div class="loader-dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <nav class="main-nav">
+            <div class="logo">
+                <a href="#"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">首页</a></li>
+                <li><a href="healing-garden.html">治愈花园</a></li>
+                <li><a href="efficiency.html">效率</a></li>
+                <li><a href="#">教育大模型</a></li>
+
+                <li><a href="developer.html">开发者</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+            </div>
+            <!-- 移除了菜单切换按钮 -->
+        </nav>
+    </header>
+
+    <main>
+        <!-- 主要内容区域 -->
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Hi，这里是IFREAD's web</h1>
+                <div class="hero-subtitle">欢迎来到我的个人网站</div>
+            </div>
+        </div>
+        
+        
+        <!-- 治愈花园邀请区域 -->
+        <div class="healing-invitation-section" id="healingInvitation">
+            <div class="invitation-content">
+                <div class="invitation-text">
+                    <h2 class="invitation-title">来治愈花园休息会吧</h2>
+                    <p class="invitation-subtitle">在这里放松心情，享受宁静时光</p>
+                </div>
+                <a href="healing-garden.html" class="invitation-btn">
+                    <span>进入治愈花园</span>
+                    <i class="fas fa-leaf"></i>
+                </a>
+            </div>
+            <div class="invitation-bg-effects">
+                <div class="floating-particle"></div>
+                <div class="floating-particle"></div>
+                <div class="floating-particle"></div>
+                <div class="floating-particle"></div>
+                <div class="floating-particle"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>关于我们</h4>
+                <ul>
+                    <li><a href="#">公司简介</a></li>
+                    <li><a href="#">新闻中心</a></li>
+                    <li><a href="#">工作机会</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>产品</h4>
+                <ul>
+                    <li><a href="#">最新产品</a></li>
+                    <li><a href="#">配件</a></li>
+                    <li><a href="#">软件服务</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>支持</h4>
+                <ul>
+                    <li><a href="#">帮助中心</a></li>
+                    <li><a href="#">联系我们</a></li>
+                    <li><a href="#">常见问题</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>关注我们</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-weixin"></i></a>
+                    <a href="#"><i class="fab fa-weibo"></i></a>
+                    <a href="#"><i class="fab fa-qq"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 IFREAD's Web. 保留所有权利。</p>
+        </div>
+    </footer>
+
+    <!-- 悬浮按钮 -->
+    <div class="floating-buttons">
+        <button id="darkModeToggle" class="floating-btn dark-mode-btn" title="切换暗色模式">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button id="musicPlayerToggle" class="floating-btn music-btn" title="音乐播放器">
+            <i class="fas fa-music"></i>
+        </button>
+    </div>
+
+    <!-- 音乐播放器容器 -->
+    <div id="musicPlayerContainer" class="music-player-container developer-music-player hidden">
+        <div class="music-player-header">
+            <div class="player-title">
+                <i class="fas fa-home"></i>
+                <span>首页音乐台</span>
+            </div>
+            <div class="player-controls">
+                <button class="control-btn minimize-btn" title="最小化">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="control-btn close-btn" title="关闭">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="music-player-body">
+            <div class="player-info">
+                <div class="now-playing">
+                    <i class="fas fa-music"></i>
+                    <span>正在播放精选音乐</span>
+                </div>
+            </div>
+            <div class="aplayer-container">
+                <!-- 当前使用的歌单ID: 8545863418 -->
+                <!-- 用户提供的歌单链接: https://c6.y.qq.com/base/fcgi-bin/u?__=WtCY8AofAOUu -->
+                <meting-js 
+                    server="tencent" 
+                    type="playlist" 
+                    id="8545863418" 
+                    fixed="false" 
+                    autoplay="false" 
+                    theme="#667eea" 
+                    loop="all" 
+                    order="random" 
+                    preload="auto" 
+                    volume="0.6"
+                    list-folded="false"
+                    list-max-height="200px">
+                </meting-js>
+            </div>
+            <div class="player-footer">
+                <div class="player-tips">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>享受音乐，放松心情</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入APlayer和MetingJS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    <script src="./scripts/main.js"></script>
+</body>
+</html>

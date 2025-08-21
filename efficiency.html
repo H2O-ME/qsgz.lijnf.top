@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>效率 - IFREAD's Web</title>
+    <link rel="icon" type="image/png" href="./images/favicon.png.png">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/efficiency.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <div class="logo">
+                <a href="index.html"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="healing-garden.html">治愈花园</a></li>
+                <li><a href="efficiency.html" class="active">效率</a></li>
+                <li><a href="#">教育大模型</a></li>
+
+                <li><a href="developer.html">开发者</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="efficiency-main">
+        <!-- 页面标题区域 -->
+        <section class="efficiency-hero">
+            <div class="hero-content">
+                <h1 class="efficiency-title">⚡ 效率工具 ⚡</h1>
+                <p class="efficiency-subtitle">提升效率，享受专注时光</p>
+            </div>
+        </section>
+
+        <!-- 实时翻页时钟 -->
+        <section class="flip-clock-section" id="flip-clock-section">
+            <button class="fullscreen-toggle" id="fullscreen-toggle" title="全屏显示">
+                <i class="fas fa-expand"></i>
+            </button>
+            <div class="flip-clock-container">
+                <h2 class="section-title">实时时钟</h2>
+                <div class="flip-clock">
+                    <div class="time-group" data-label="小时">
+                        <div class="flip-card" id="hour-tens">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">0</div>
+                                <div class="flip-card-back">0</div>
+                            </div>
+                        </div>
+                        <div class="flip-card" id="hour-ones">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">0</div>
+                                <div class="flip-card-back">0</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="time-separator">:</div>
+                    <div class="time-group" data-label="分钟">
+                        <div class="flip-card" id="minute-tens">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">0</div>
+                                <div class="flip-card-back">0</div>
+                            </div>
+                        </div>
+                        <div class="flip-card" id="minute-ones">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">0</div>
+                                <div class="flip-card-back">0</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="time-separator">:</div>
+                    <div class="time-group" data-label="秒钟">
+                        <div class="flip-card" id="second-tens">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">0</div>
+                                <div class="flip-card-back">0</div>
+                            </div>
+                        </div>
+                        <div class="flip-card" id="second-ones">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">0</div>
+                                <div class="flip-card-back">0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 功能区域 -->
+        <div class="efficiency-content">
+            <!-- 代做清单 -->
+            <section class="todo-section">
+                <div class="todo-container">
+                    <h2 class="section-title">📝 代做清单</h2>
+                    <div class="todo-input-area">
+                        <input type="text" id="todo-input" placeholder="添加新任务..." maxlength="100">
+                        <button id="add-todo-btn" class="add-btn">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="todo-lists">
+                        <div class="active-todos">
+                            <h3>待办事项</h3>
+                            <ul id="active-todo-list" class="todo-list"></ul>
+                        </div>
+                        
+                        <div class="completed-todos">
+                            <div class="completed-header">
+                                <h3>已完成</h3>
+                                <button id="toggle-completed" class="toggle-btn">
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                            </div>
+                            <ul id="completed-todo-list" class="todo-list collapsed"></ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 英语背诵卡片 -->
+            <section class="flashcard-section">
+                <div class="flashcard-container">
+                    <h2 class="section-title">📚 英语背诵卡片</h2>
+                    
+                    <div class="flashcard-controls">
+                        <button id="mode-toggle" class="control-btn">顺序模式</button>
+                        <button id="starred-filter" class="control-btn">显示全部</button>
+                    </div>
+                    
+                    <div class="flashcard-wrapper">
+                        <div class="flashcard" id="flashcard">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div class="word-content">
+                                        <h3 class="word" id="word-text">Loading...</h3>
+                                        <p class="phonetic" id="phonetic-text"></p>
+                                    </div>
+                                    <button class="star-btn" id="star-btn">
+                                        <i class="far fa-star"></i>
+                                    </button>
+                                </div>
+                                <div class="flashcard-back">
+                                    <div class="meaning-content">
+                                        <h3 class="meaning" id="meaning-text"></h3>
+                                        <p class="example" id="example-text"></p>
+                                    </div>
+                                    <button class="star-btn" id="star-btn-back">
+                                        <i class="far fa-star"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="flip-btn" id="flip-btn">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="flashcard-navigation">
+                        <button id="prev-card" class="nav-btn">
+                            <i class="fas fa-chevron-left"></i> 上一个
+                        </button>
+                        <span class="card-counter" id="card-counter">1 / 1</span>
+                        <button id="next-card" class="nav-btn">
+                            下一个 <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 悬浮按钮 -->
+    <div class="floating-buttons">
+        <button id="darkModeToggle" class="floating-btn dark-mode-btn" title="切换暗色模式">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button id="musicPlayerToggle" class="floating-btn music-btn" title="音乐播放器">
+            <i class="fas fa-music"></i>
+        </button>
+    </div>
+
+    <!-- 音乐播放器容器 -->
+    <div id="musicPlayerContainer" class="music-player-container efficiency-music-player hidden">
+        <div class="music-player-header">
+            <div class="player-title">
+                <i class="fas fa-bolt"></i>
+                <span>效率音乐台</span>
+            </div>
+            <button class="player-close" id="closeMusicPlayer">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="music-player-content">
+            <div class="aplayer-container">
+                <meting-js
+                    server="netease"
+                    type="playlist"
+                    id="2884035"
+                    fixed="false"
+                    autoplay="false"
+                    theme="#74b9ff"
+                    loop="all"
+                    order="random"
+                    preload="auto"
+                    volume="0.7"
+                    mutex="true"
+                    lrctype="1"
+                    listfolded="false"
+                    storagename="efficiency_aplayer_setting">
+                </meting-js>
+            </div>
+            <div class="player-tips">
+                <i class="fas fa-lightbulb"></i>
+                <span>专注音乐，提升效率</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入APlayer和MetingJS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/efficiency.js"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开发者 - IFREAD's Web</title>
+    <link rel="icon" type="image/png" href="./images/favicon.png.png">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <div class="logo">
+                <a href="index.html"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="healing-garden.html">治愈花园</a></li>
+                <li><a href="efficiency.html">效率</a></li>
+                <li><a href="#">学科大模型</a></li>
+
+                <li><a href="developer.html" class="active">开发者</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="developer-content">
+            <div class="developer-header">
+                <h1>开发者信息</h1>
+                <p>欢迎来到开发者页面，这里展示了项目的开发者信息和相关内容。</p>
+            </div>
+            
+            <div class="developer-info">
+                <h2 class="section-title">= 开发人员 =</h2>
+                <div class="developers-grid">
+                    <div class="developer-card">
+                        <div class="developer-avatar">
+                            <img src="./images/ifread.jpg" alt="IFREAD">
+                        </div>
+                        <div class="developer-details">
+                            <h3>IFREAD</h3>
+                            <p class="developer-role">全栈开发者</p>
+                            <div class="developer-social">
+                                <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+                                <a href="https://www.cnblogs.com/IFREAD-LI/" target="_blank"><i class="fas fa-blog"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>关于我们</h4>
+                <ul>
+                    <li><a href="#">公司简介</a></li>
+                    <li><a href="#">新闻中心</a></li>
+                    <li><a href="#">工作机会</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>产品</h4>
+                <ul>
+                    <li><a href="#">最新产品</a></li>
+                    <li><a href="#">热门产品</a></li>
+                    <li><a href="#">产品支持</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>联系我们</h4>
+                <ul>
+                    <li><a href="#">客服中心</a></li>
+                    <li><a href="#">技术支持</a></li>
+                    <li><a href="#">反馈建议</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 IFREAD's Web. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <!-- 悬浮按钮 -->
+    <div class="floating-buttons">
+        <button id="darkModeToggle" class="floating-btn dark-mode-btn" title="切换暗色模式">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button id="musicPlayerToggle" class="floating-btn music-btn" title="音乐播放器">
+            <i class="fas fa-music"></i>
+        </button>
+    </div>
+
+    <!-- 音乐播放器容器 -->
+    <div id="musicPlayerContainer" class="music-player-container developer-music-player hidden">
+        <div class="music-player-header">
+            <div class="player-title">
+                <i class="fas fa-code"></i>
+                <span>开发者音乐台</span>
+            </div>
+            <div class="player-controls">
+                <button id="prevSong" class="control-btn" title="上一首">
+                    <i class="fas fa-step-backward"></i>
+                </button>
+                <button id="nextSong" class="control-btn" title="下一首">
+                    <i class="fas fa-step-forward"></i>
+                </button>
+                <button id="minimizePlayer" class="control-btn" title="最小化">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button id="closeMusicPlayer" class="control-btn close-btn" title="关闭">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="music-player-body">
+            <div class="player-info">
+                <div class="now-playing">
+                    <i class="fas fa-music"></i>
+                    <span>专为开发者精选的编程音乐</span>
+                </div>
+            </div>
+            <div id="musicPlayer" class="aplayer-container">
+                <meting-js 
+                    server="tencent" 
+                    type="playlist" 
+                    id="8642102409" 
+                    fixed="false" 
+                    autoplay="false" 
+                    theme="#667eea" 
+                    loop="all" 
+                    order="random" 
+                    preload="auto" 
+                    volume="0.6"
+                    list-folded="false"
+                    list-max-height="200px">
+                </meting-js>
+            </div>
+            <div class="player-footer">
+                <div class="player-tips">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>专注编程，享受音乐</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+    <script src="./scripts/main.js"></script>
+</body>
+</html>

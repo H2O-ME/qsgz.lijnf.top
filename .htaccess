@@ -1,0 +1,41 @@
+# 启用 URL 重写引擎
+RewriteEngine On
+
+# 如果请求的是真实存在的文件或目录，直接访问
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# API 请求重写规则
+RewriteRule ^api/([a-zA-Z0-9_]+)$ backend/api.php?endpoint=$1 [QSA,L]
+
+# 设置默认字符集
+AddDefaultCharset UTF-8
+
+# 启用 PHP 错误显示（开发环境使用，生产环境应关闭）
+# php_flag display_errors on
+# php_value error_reporting E_ALL
+
+# 禁止访问敏感文件
+<FilesMatch "(\.(bak|config|dist|inc|ini|log|sh|sql|swp)|~)$">
+    Order allow,deny
+    Deny from all
+    Satisfy All
+</FilesMatch>
+
+# 禁止访问 .htaccess 文件
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# 禁止访问 config.php 文件
+<Files config.php>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# 禁止列出目录内容
+Options -Indexes
+
+# 设置默认首页文件
+DirectoryIndex index.html index.php

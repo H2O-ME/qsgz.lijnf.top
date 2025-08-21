@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>按钮测试页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f8ff;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .game-btn {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            border: none;
+            border-radius: 12px;
+            padding: 10px 20px;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            margin: 5px;
+        }
+        .game-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+        .game-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        #bubbleCanvas {
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 100%);
+            cursor: pointer;
+        }
+        .console-output {
+            background: #000;
+            color: #0f0;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            height: 200px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>治愈花园按钮功能测试</h1>
+    
+    <div class="test-section">
+        <h2>泡泡游戏测试</h2>
+        <canvas id="bubbleCanvas" width="300" height="200"></canvas>
+        <div>分数: <span id="bubbleScore">0</span></div>
+        <button id="startBubbleGame" class="game-btn">开始游戏</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>控制台输出</h2>
+        <div id="consoleOutput" class="console-output"></div>
+        <button onclick="clearConsole()" class="game-btn">清空控制台</button>
+    </div>
+
+    <script>
+        // 重写console.log来显示在页面上
+        const originalLog = console.log;
+        const originalError = console.error;
+        const consoleOutput = document.getElementById('consoleOutput');
+        
+        function addToConsole(message, type = 'log') {
+            const div = document.createElement('div');
+            div.style.color = type === 'error' ? '#ff6b6b' : '#0f0';
+            div.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            consoleOutput.appendChild(div);
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            addToConsole(args.join(' '), 'log');
+        };
+        
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            addToConsole(args.join(' '), 'error');
+        };
+        
+        function clearConsole() {
+            consoleOutput.innerHTML = '';
+        }
+        
+        // 泡泡游戏变量
+        let bubbleGameActive = false;
+        let bubbleScore = 0;
+        let bubbles = [];
+        
+        // 初始化测试
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('测试页面加载完成');
+            
+            const canvas = document.getElementById('bubbleCanvas');
+            const ctx = canvas.getContext('2d');
+            const startBtn = document.getElementById('startBubbleGame');
+            const scoreDisplay = document.getElementById('bubbleScore');
+            
+            console.log('元素检查:', {
+                canvas: !!canvas,
+                startBtn: !!startBtn,
+                scoreDisplay: !!scoreDisplay
+            });
+            
+            if (!canvas || !startBtn || !scoreDisplay) {
+                console.error('必要元素未找到');
+                return;
+            }
+            
+            startBtn.addEventListener('click', function() {
+                console.log('按钮被点击，当前游戏状态:', bubbleGameActive);
+                
+                if (bubbleGameActive) {
+                    console.log('游戏已在进行中');
+                    return;
+                }
+                
+                console.log('开始新游戏');
+                bubbleGameActive = true;
+                bubbleScore = 0;
+                bubbles = [];
+                updateScore();
+                startBtn.textContent = '游戏进行中...';
+                startBtn.disabled = true;
+                
+                // 简单的游戏逻辑
+                setTimeout(() => {
+                    console.log('游戏结束');
+                    bubbleGameActive = false;
+                    startBtn.textContent = '重新开始';
+                    startBtn.disabled = false;
+                    alert(`测试游戏结束！分数: ${bubbleScore}`);
+                }, 5000);
+            });
+            
+            canvas.addEventListener('click', function(event) {
+                if (!bubbleGameActive) return;
+                
+                bubbleScore++;
+                updateScore();
+                console.log('画布被点击，分数增加:', bubbleScore);
+            });
+            
+            function updateScore() {
+                scoreDisplay.textContent = bubbleScore;
+                console.log('分数更新为:', bubbleScore);
+            }
+            
+            console.log('测试页面初始化完成');
+        });
+    </script>
+</body>
+</html>
